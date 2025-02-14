@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
 import "./Checkbox.css";
+import CheckIcon from "../svg/CheckIcon";
 
 interface CheckboxProps {
   checked?: boolean;
@@ -10,48 +11,41 @@ interface CheckboxProps {
   id?: string;
   className?: string;
   required?: boolean;
+  checkmarkColor?: string;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
   checked = false,
-  onChange,
-  label,
-  disabled,
-  name,
-  id,
-  className,
-  required,
+  onChange = () => {},
+  label = "",
+  disabled = false,
+  name = "",
+  id = "",
+  className = "",
+  required = false,
+  checkmarkColor = "white",
 }) => {
   return (
     <label
-      className={`checkbox-container ${disabled ? "disabled" : ""} ${
-        className || ""
-      }`}
+      htmlFor={id} // Associate the <label> with <input> using the id attribute
+      className={`checkbox-container ${
+        disabled ? "disabled" : ""
+      } ${className}`}
     >
       <input
         type="checkbox"
+        id={id}
+        name={name}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
-        name={name}
-        id={id}
         required={required}
+        aria-label={label || "checkbox"}
+        aria-disabled={disabled}
+        aria-checked={checked}
       />
       <span className="custom-checkbox">
-        {checked && (
-          <svg
-            className="checkbox-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        )}
+        {checked && <CheckIcon width="15" height="15" color={checkmarkColor} />}
       </span>
       {label && <span className="checkbox-label">{label}</span>}
     </label>
