@@ -1,0 +1,65 @@
+:root {
+  --border-color: #ccc;
+  --error-color: red;
+  --icon-color: #ccc;
+  --input-padding: 5px 10px;
+}
+
+.custom-input-container {
+  width: 80%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: var(--input-padding);
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.input-field {
+  flex: 1;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.icon-left, .icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  color: var(--icon-color);
+}
+
+.icon-right button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.icon-right-button {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.error-text {
+  width: 100%;
+  text-align: left;
+  color: var(--error-color);
+  margin-bottom: 5px;
+  font-size: 12px;
+}
