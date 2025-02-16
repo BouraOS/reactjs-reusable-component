@@ -23,6 +23,8 @@ const columns = [
 
 const ParentComponent = () => {
   const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 10,
@@ -33,6 +35,7 @@ const ParentComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await api.getData({
           page: pagination.pageIndex + 1, // API might use 1-based index
           pageSize: pagination.pageSize,
@@ -40,8 +43,10 @@ const ParentComponent = () => {
 
         setTableData(response.data);
         setPageCount(Math.ceil(response.total / pagination.pageSize));
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
 
@@ -69,6 +74,8 @@ const ParentComponent = () => {
       onAdd={handleAdd}
       onEdit={handleEdit}
       onDelete={handleDelete}
+      totalItems={tableData.length}
+      loading={loading}
     />
   );
 };

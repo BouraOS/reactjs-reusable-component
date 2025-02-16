@@ -6,6 +6,7 @@ import {
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import Pagination from "../Pagination/Pagination";
 
 const Table = ({
   columns,
@@ -16,6 +17,8 @@ const Table = ({
   onDelete,
   onPaginationChange,
   pagination,
+  totalItems,
+  loading,
 }) => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState([]);
@@ -91,38 +94,16 @@ const Table = ({
         </tbody>
       </table>
 
-      {/* Pagination */}
-      <div>
-        <button
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </button>
-        <span>
-          Page{" "}
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
-          </strong>
-        </span>
-        <button
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </button>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => table.setPageSize(Number(e.target.value))}
-        >
-          {[10, 20, 30, 40, 50].map((size) => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
-          ))}
-        </select>
-      </div>
+      {/* Reusable Pagination Component */}
+      <Pagination
+        table={table}
+        totalItems={totalItems}
+        loading={loading}
+        showPageSize={true}
+        showPageInfo={true}
+        pageSizeOptions={[5, 10, 25, 50]}
+        className="custom-pagination"
+      />
 
       {/* Add Button */}
       <button onClick={onAdd}>Add New</button>
