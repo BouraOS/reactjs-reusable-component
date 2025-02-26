@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({
   children,
@@ -6,12 +6,14 @@ const ProtectedRoute = ({
   userRole,
   allowedRoles,
 }) => {
+  const location = useLocation;
+
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" state={{ from: location}} replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/unauthorized" />; // Redirect if the user role is not allowed
+    return <Navigate to="/unauthorized" state={{ from: location}} replace />; // Redirect if the user role is not allowed
   }
 
   return children;

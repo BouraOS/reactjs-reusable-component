@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { currentUser, tasks } from "./DummyData";
-import { hasActionPermission } from "./permissions";
+import { hasActionPermission } from "./hasActionPermission";
 
 const TaskManager = () => {
   const [taskList, setTaskList] = useState(tasks);
