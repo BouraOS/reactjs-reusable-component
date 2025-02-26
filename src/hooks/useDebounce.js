@@ -14,6 +14,7 @@ function useDebouncedCallback(callback, delay, dependencies = []) {
     return () => {
       clearTimeout(debouncedCallbackRef.current);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callback, delay, ...dependencies]);
 
   // Return a function to clear the timeout manually

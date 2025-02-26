@@ -23,3 +23,12 @@ export function removeDuplicates<T>(items: T[]): T[] {
   const uniqueItems = new Set<T>(items);
   return Array.from(uniqueItems);
 }
+
+export const groupBy = (array: any[], key: string) => {
+  return array.reduce((result, currentValue) => {
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+      currentValue
+    );
+    return result;
+  }, {});
+};
