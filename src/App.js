@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import TaskManager from "./permissions/TaskManager";
+import React from "react";
+import Home from "./Home";
 
-function Home() {
-  return <h1>Home</h1>;
-}
 function RecentActivity() {
   return (
     <>
