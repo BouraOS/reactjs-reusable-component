@@ -26,27 +26,38 @@ npm install
 yarn install
 ```
 
-## Usage
+## Usage CustomButton
 
 Import and use components in your React project:
 
 ```jsx
-import { Button } from "./components/Button";
+import { CustomButton } from "./components/Button";
 
-const App = () => (
-  <Button label="Click Me" onClick={() => alert("Button Clicked!")} />
-);
-
-export default App;
+<CustomButton
+  onClick={() => console.log("Button clicked!")}
+  disabled={false}
+  loading={false}
+  bgColor="#007bff"
+  style={{ width: "200px", height: "50px" }}
+  className="custom-button"
+  icon={<Spinner />}
+  iconPosition="left"
+>
+  Submit
+</CustomButton>;
 ```
 
 ## Available Components
 
 - **Button** – Customizable button component
+- **Checkbox** - Customizable Checkbox component
 - **InputField** – Input field with validation
 - **Modal** – Simple and reusable modal component
-- **Card** – UI card for displaying content
-- **Dropdown** – Select dropdown component
+- **Form** – Form component with validation
+- **Snackbar** - Notification component for displaying brief messages
+- **Table** - Data table component with sorting and pagination
+- **FileUpload** - File upload component with drag-and-drop support
+- **Preloader** - Loading spinner component
 
 ## Contributing
 
