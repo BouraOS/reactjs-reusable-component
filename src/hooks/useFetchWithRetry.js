@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// TODO: you could make it support POST calls too?
+
 export function useFetchWithRetry(
   url,
   options = {},
