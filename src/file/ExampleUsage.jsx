@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import FileUpload from "./file/FileUpload.tsx";
+import FileUpload from "./file/FileUpload";
 
-const ExampleUsage = () => {
+const FileUploadExampleUsage = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleFilesSelected = (files) => {
@@ -9,7 +9,9 @@ const ExampleUsage = () => {
     console.log("Selected files:", files);
   };
 
-  console.log("Uploaded files:", uploadedFiles);
+  const handleError = (error) => {
+    console.error("File upload error:", error);
+  };
 
   return (
     <div>
@@ -19,10 +21,18 @@ const ExampleUsage = () => {
         accept="image/*, .pdf" // Allow images and PDFs
         maxSize={10 * 1024 * 1024} // 10MB
         onFilesSelected={handleFilesSelected}
-        onError={(error) => console.error(error)}
+        onError={handleError}
       />
+      <div>
+        <h2>Uploaded Files:</h2>
+        <ul>
+          {uploadedFiles.map((file, index) => (
+            <li key={index}>{file.name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
 
-export default ExampleUsage;
+export default FileUploadExampleUsage;
