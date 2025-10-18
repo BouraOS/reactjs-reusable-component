@@ -38,3 +38,28 @@ export function formatMinutesToHours(minutes: number): string {
   const remainingMinutes = minutes % 60; // Calcul des minutes restantes
   return `${hours}h ${remainingMinutes}m`;
 }
+
+export function formatTimeAgo(date: string | number | Date): string {
+  let seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
+
+  const units: [number, string][] = [
+    [60, "second"],
+    [60, "minute"],
+    [24, "hour"],
+    [7, "day"],
+    [4.3, "week"],
+    [12, "month"],
+    [Number.POSITIVE_INFINITY, "year"],
+  ];
+
+  let i = 0;
+  while (seconds >= units[i][0] && i < units.length - 1) {
+    seconds /= units[i][0];
+    i++;
+  }
+
+  const value = Math.floor(seconds);
+  const label = units[i][1];
+
+  return `${value} ${label}${value !== 1 ? "s" : ""} ago`;
+}
