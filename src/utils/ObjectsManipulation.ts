@@ -32,3 +32,7 @@ export const groupBy = (array: any[], key: string) => {
     return result;
   }, {});
 };
+
+export function deepClone(obj: object): object {
+  return JSON.parse(JSON.stringify(obj));
+}
