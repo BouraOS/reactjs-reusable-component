@@ -16,3 +16,25 @@ function formatTime(date: Date | string, format: string = "HH:mm:ss"): string {
 }
 
 export { formatTime };
+
+export function convertMinutesToTime(minutes: number): {
+  days: number;
+  hours: number;
+  minutes: number;
+} {
+  const days = Math.floor(minutes / (24 * 60));
+  const hours = Math.floor((minutes % (24 * 60)) / 60);
+  const remainingMinutes = minutes % 60;
+
+  return {
+    days,
+    hours,
+    minutes: remainingMinutes,
+  };
+}
+
+export function formatMinutesToHours(minutes: number): string {
+  const hours = Math.floor(minutes / 60); // Calcul du nombre d'heures
+  const remainingMinutes = minutes % 60; // Calcul des minutes restantes
+  return `${hours}h ${remainingMinutes}m`;
+}
