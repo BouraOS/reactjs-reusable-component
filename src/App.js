@@ -1,14 +1,12 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
-import TaskManager from "./permissions/TaskManager";
-import React from "react";
 import Home from "./Home";
 
 function RecentActivity() {
   return (
     <>
       <h1>Recent Activity</h1>
-      <Dashboard />
     </>
   );
 }
@@ -28,9 +26,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-const Dashboard = () => {
-  return <TaskManager />;
-};
 
 export default App;
